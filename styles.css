@@ -1,12 +1,26 @@
+/* ============================================
+   VERSÃO ESCURA (proposital) - Barbearia do Chiquinho
+   Baseada na paleta original (vinho #641f23 + creme #fbf8f0),
+   com variáveis novas para separar "cor de texto claro" de
+   "cor de fundo escuro", evitando reaproveitamentos ambíguos.
+   ============================================ */
 :root {
-  --red: #641f23;
-  --red-dark: #3e171b;
-  --cream: #f4ead6;
-  --paper: #fbf8f0;
-  --ink: #211b19;
-  --muted: #756960;
-  --gold: #c39b55;
-  --line: rgba(33, 27, 25, 0.16);
+  --red: #7c262b; /* vinho, ligeiramente mais vibrante que o original para contrastar no fundo escuro */
+  --red-dark: #3a1519; /* usado como texto sobre o botão dourado */
+  --red-accent: #c0464c; /* NOVO: vermelho mais claro, para textos/links sobre fundo escuro (preços, links) */
+  --cream: #f5efe3; /* mantido claro - agora usado só como cor de TEXTO (não mais como fundo de seção) */
+  --paper: #1c1410; /* fundo principal do site, agora escuro (era claro) */
+  --paper-alt: #241a14; /* NOVO: fundo de seções alternadas (substitui o antigo uso de --cream como fundo) */
+  --footer-bg: #120d0a; /* NOVO: fundo do rodapé, mais escuro que o --paper */
+  --ink: #f5efe3; /* cor de texto principal, agora clara (era escura) */
+  --muted: #b8a88c; /* cor de texto secundário, agora clara (era escura) */
+  --gold: #d9b54a; /* dourado mais claro que o original, para contraste no fundo escuro */
+  --line: rgba(
+    245,
+    239,
+    227,
+    0.14
+  ); /* bordas, agora claras e translúcidas (eram escuras) */
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
 }
 * {
@@ -37,7 +51,7 @@ a {
 .skip-link:focus {
   left: 16px;
   top: 16px;
-  background: var(--cream);
+  background: var(--paper-alt);
   padding: 10px;
   z-index: 99;
 }
@@ -45,7 +59,12 @@ a {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(251, 248, 240, 0.95);
+  background: rgba(
+    28,
+    20,
+    16,
+    0.92
+  ); /* era rgba(251,248,240,0.95) - agora escuro translúcido */
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -66,7 +85,9 @@ a {
   letter-spacing: 0.04em;
 }
 .brand-mini strong {
-  color: var(--red);
+  color: var(
+    --red-accent
+  ); /* era var(--red) - precisa ser mais claro sobre o header escuro */
   font-size: 15px;
 }
 .brand-mark {
@@ -91,7 +112,7 @@ a {
 }
 .main-nav a:hover,
 .text-link:hover {
-  color: var(--red);
+  color: var(--red-accent); /* era var(--red) */
 }
 .nav-cta {
   background: var(--red);
@@ -228,9 +249,11 @@ em {
   aspect-ratio: 1;
   margin: auto;
   padding: 13px;
-  background: var(--cream);
+  background: var(
+    --cream
+  ); /* mantido claro de propósito: cria um ponto de luz/destaque na seção vinho */
   border: 1px solid var(--gold);
-  box-shadow: 0 0 0 9px rgba(195, 155, 85, 0.2);
+  box-shadow: 0 0 0 9px rgba(217, 181, 74, 0.22);
 }
 .emblem-frame img {
   display: block;
@@ -294,7 +317,9 @@ em {
   font-family: "Rye", serif;
   font-size: 21px;
   font-weight: 400;
-  color: var(--red);
+  color: var(
+    --red-accent
+  ); /* era var(--red) - precisa ser mais claro sobre o fundo escuro */
 }
 .service-item small {
   display: block;
@@ -332,7 +357,7 @@ em {
   justify-content: center;
   text-align: center;
   color: var(--gold);
-  outline: 1px solid rgba(195, 155, 85, 0.5);
+  outline: 1px solid rgba(217, 181, 74, 0.5);
   outline-offset: -12px;
   transform: rotate(-8deg);
   font-family: "Rye", serif;
@@ -361,24 +386,31 @@ em {
   margin-top: 16px;
 }
 .gallery-section {
-  background: var(--cream);
+  background: var(
+    --paper-alt
+  ); /* era var(--cream) - agora usa o fundo escuro alternativo */
 }
 .gallery-placeholder {
   height: 315px;
   margin-top: 43px;
-  border: 1px dashed rgba(33, 27, 25, 0.28);
+  border: 1px dashed rgba(245, 239, 227, 0.22); /* era rgba(33,27,25,0.28) - borda clara sobre fundo escuro */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(
+    255,
+    255,
+    255,
+    0.03
+  ); /* era rgba(255,255,255,0.18) - reduzido para não ficar um bloco claro */
 }
 .gallery-placeholder span {
   font-family: "Rye", serif;
   font-size: 22px;
-  color: var(--red);
+  color: var(--red-accent); /* era var(--red) */
 }
 .gallery-placeholder small {
   max-width: 340px;
@@ -396,7 +428,7 @@ em {
 }
 .map-wrap {
   min-height: 560px;
-  background: #e8deca;
+  background: #241a14; /* era #e8deca - equivalente escuro, igual ao --paper-alt */
   padding: 12px;
 }
 .map-wrap iframe {
@@ -425,14 +457,16 @@ em {
   font-size: 14px;
 }
 .info-block a {
-  color: var(--red);
+  color: var(--red-accent); /* era var(--red) */
   font-weight: 700;
 }
 .location-copy .button {
   margin-top: 28px;
 }
 .site-footer {
-  background: var(--ink);
+  background: var(
+    --footer-bg
+  ); /* era var(--ink) - agora usa variável dedicada, já que --ink virou cor de texto clara */
   color: #e8d6b4;
   padding: 55px 0 80px;
 }
